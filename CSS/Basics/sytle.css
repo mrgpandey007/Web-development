@@ -1,4 +1,6 @@
 body {
     background-color: cyan;
     color:brown;
+    text-emphasis: none;
+    text-align: center;
 }
