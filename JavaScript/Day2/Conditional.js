@@ -7,7 +7,7 @@ if(x>18){
 }
 
 let b=0
-if(b>18){
+if(b>18){ 
      console.log("you can drive")
 } else if(b==0) {
     console.log("No.....................!")
