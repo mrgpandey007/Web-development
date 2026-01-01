@@ -1,0 +1,22 @@
+{
+  "name": "p7",
+  "version": "1.0.0",
+  "description": "Express + MySQL project",
+  "main": "p7.js",
+  "scripts": {
+    "start": "node p7.js",
+    "dev": "nodemon p7.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gautam Pandey",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "express": "^5.1.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

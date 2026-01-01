@@ -1,0 +1,55 @@
+const express = require("express");
+const mysql = require("mysql");
+const bodyParser = require("body-parser");
+const path = require("path");
+
+const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(".")); // still serves static files
+
+// Serve p7.html when visiting root
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "p7.html"));
+});
+
+// --- your DB connection and routes here ---
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",        // or fsduser if you created one
+  password: "pass",    // update with correct password
+  database: "marks_db"
+});
+
+db.connect(err => {
+  if (err) {
+    console.error("MySQL connection error:", err);
+  } else {
+    console.log("Connected to MySQL database 'marks_db'");
+  }
+});
+
+app.post("/add", (req, res) => {
+  const { name, s1, s2, s3 } = req.body;
+  db.query("CALL addMarks(?,?,?,?)", [name, s1, s2, s3], (err) => {
+    if (err) {
+      console.error("/add error:", err);
+      res.status(500).send("Error inserting marks: " + err.message);
+      return;
+    }
+    res.send("Inserted");
+  });
+});
+
+app.get("/marks", (req, res) => {
+  db.query("CALL getMarks()", (err, results) => {
+    if (err) {
+      console.error("/marks error:", err);
+      res.status(500).send("Error fetching marks: " + err.message);
+      return;
+    }
+    res.json(results && results[0] ? results[0] : []);
+  });
+});
+
+app.listen(3000, () => console.log("http://localhost:3000"));

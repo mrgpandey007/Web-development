@@ -1,0 +1,22 @@
+{
+  "name": "p9",
+  "version": "1.0.0",
+  "description": "Login/DB project with Express and MySQL",
+  "main": "p9.js",
+  "scripts": {
+    "start": "node p9.js",
+    "dev": "nodemon p9.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gautam Pandey",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "express": "^5.1.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

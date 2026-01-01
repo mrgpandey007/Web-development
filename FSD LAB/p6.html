@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Session & Cookies</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <input id="username" placeholder="Enter Name">
+  <button onclick="login()">Login</button>
+  <button onclick="logout()">Logout</button>
+  <p id="status"></p>
+
+<script>
+// --- Cookie Helpers ---
+function setCookie(name, value, days){
+  let d = new Date();
+  d.setTime(d.getTime() + (days*24*60*60*1000));
+  document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+}
+function getCookie(name){
+  let cookies = document.cookie.split(";");
+  for(let c of cookies){
+    let [k,v] = c.trim().split("=");
+    if(k===name) return v;
+  }
+  return "";
+}
+function deleteCookie(name){ setCookie(name,"",-1); }
+
+// --- Session Simulation (localStorage) ---
+function login(){
+  let user = document.getElementById("username").value;
+  if(user){
+    setCookie("user", user, 1);          // store in cookie
+    localStorage.setItem("session",user); // store in session
+    document.getElementById("status").textContent = "Welcome " + user;
+  }
+}
+function logout(){
+  deleteCookie("user");
+  localStorage.removeItem("session");
+  document.getElementById("status").textContent = "Logged out!";
+}
+
+// --- Auto check on page load ---
+window.onload = function(){
+  let user = getCookie("user") || localStorage.getItem("session");
+  if(user) document.getElementById("status").textContent = "Welcome back " + user;
+};
+</script>
+</body>
+</html>

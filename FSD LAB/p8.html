@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>AngularJS Demo</title>
+  <!-- AngularJS CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+
+  <h2>{{ title }}</h2>
+
+  <!-- Two-way binding -->
+  <input ng-model="name" placeholder="Enter name">
+  <p>Hello {{ name }}!</p>
+
+  <!-- ng-repeat -->
+  <h3>Student List</h3>
+  <ul>
+    <li ng-repeat="s in students">{{ s.id }}. {{ s.name }} - {{ s.email }}</li>
+  </ul>
+
+  <!-- AngularJS script inside same file -->
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("MainCtrl", function($scope){
+      $scope.title = "AngularJS Lab Manual Demo";
+      $scope.name = "Gautam";
+      $scope.students = [
+        {id:1, name:"Aarav", email:"aarav@example.com"},
+        {id:2, name:"Dia",   email:"dia@example.com"},
+        {id:3, name:"Ravi",  email:"ravi@example.com"}
+      ];
+    });
+  </script>
+</body>
+</html>

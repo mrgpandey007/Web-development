@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Auth Validation</title>
+  <style>
+    form { width:300px; margin:20px auto; padding:15px; border:1px solid #ccc; }
+    input { width:90%; margin:8px; padding:8px; }
+    .error { color:red; font-size:12px; }
+  </style>
+</head>
+<body>
+  <center><h2>Registration</h2></center>
+  <form id="registerForm">
+    <input id="rname" placeholder="Name">
+    <input id="remail" type="email" placeholder="Email">
+    <input id="rpass" type="password" placeholder="Password">
+    <button type="submit">Register</button>
+    <div id="rerror" class="error"></div>
+  </form>
+
+  <center><h2>Login</h2></center>
+  <form id="loginForm">
+    <input id="lemail" type="email" placeholder="Email">
+    <input id="lpass" type="password" placeholder="Password">
+    <button type="submit">Login</button>
+    <div id="lerror" class="error"></div>
+  </form>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let name = rname.value, email = remail.value, pass = rpass.value;
+  if(!name || !email || !pass) rerror.textContent="All fields required!";
+  else if(pass.length < 6) rerror.textContent="Password must be ≥ 6 chars!";
+  else rerror.textContent="Registration Validated!";
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let email = lemail.value, pass = lpass.value;
+  if(!email || !pass) lerror.textContent="Email & Password required!";
+  else lerror.textContent="Login Validated!";
+});
+</script>
+</body>
+</html>

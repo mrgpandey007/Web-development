@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Auth Validation</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    form { width:300px; margin:20px auto; padding:15px; border:1px solid #ccc; }
+    input { width:90%; margin:8px; padding:8px; }
+    .error { color:red; font-size:12px; }
+  </style>
+</head>
+<body>
+  <center><h2>Registration</h2></center>
+  <form id="registerForm">
+    <input id="rname" placeholder="Name">
+    <input id="remail" type="email" placeholder="Email">
+    <input id="rpass" type="password" placeholder="Password">
+    <button type="submit">Register</button>
+    <div id="rerror" class="error"></div>
+  </form>
+  <center><h2>Login</h2></center>
+  <form id="loginForm">
+    <input id="lemail" type="email" placeholder="Email">
+    <input id="lpass" type="password" placeholder="Password">
+    <button type="submit">Login</button>
+    <div id="lerror" class="error"></div>
+  </form>
+
+<script>
+$(function(){
+  // Registration validation
+  $("#registerForm").submit(function(e){
+    e.preventDefault();
+    if($("#rname").val()=="" || $("#remail").val()=="" || $("#rpass").val()==""){
+      $("#rerror").text("All fields are required!");
+    } else if($("#rpass").val().length < 6){
+      $("#rerror").text("Password must be at least 6 characters!");
+    } else {
+      $("#rerror").text("Registration Validated!");
+    }
+  });
+
+  // Login validation
+  $("#loginForm").submit(function(e){
+    e.preventDefault();
+    if($("#lemail").val()=="" || $("#lpass").val()==""){
+      $("#lerror").text("Email and Password required!");
+    } else {
+      $("#lerror").text("Login Validated!");
+    }
+  });
+});
+</script>
+</body>
+</html>
